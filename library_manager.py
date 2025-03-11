@@ -56,12 +56,12 @@ def remove_book(title):
                     st.error("Book not found!")
                 
 
-def search_book(title,author):
+def search_book(title=None,author=None):
        
        if title != None: 
         book_to_search = list(filter(lambda book: book["Title"].lower() == title, st.session_state.books))  
        elif author != None:
-        book_to_search = list(filter(lambda book: book["Author"].lower() == author.lower(), st.session_state.books))
+        book_to_search = list(filter(lambda book: book["Author"].lower() == author, st.session_state.books))
 
        if st.button("Search"):
          if book_to_search:
@@ -114,9 +114,11 @@ def logic():
 
    
         if user_title:
-            search_book(user_title, user_author)
+            search_book(title=user_title, author=user_author)
+            user_author = None
         elif user_author:
-            search_book(user_author, user_title)
+            search_book(title=user_title, author=user_author)
+            user_title = None
         else:
             st.error("Please enter a value to search!")
     
