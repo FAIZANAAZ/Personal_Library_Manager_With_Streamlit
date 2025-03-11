@@ -59,9 +59,9 @@ def remove_book(title):
 def search_book(title,author):
        
        if title != None: 
-        book_to_search = list(filter(lambda book: book["Title"] == title, st.session_state.books))  
+        book_to_search = list(filter(lambda book: book["Title"].lower() == title, st.session_state.books))  
        elif author != None:
-        book_to_search = list(filter(lambda book: book["Author"] == author, st.session_state.books)) 
+        book_to_search = list(filter(lambda book: book["Author"].lower() == author.lower(), st.session_state.books))
 
        if st.button("Search"):
          if book_to_search:
